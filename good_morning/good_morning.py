@@ -28,6 +28,8 @@ import re
 import urllib.request
 from bs4 import BeautifulSoup
 from datetime import date
+import os
+from openpyxl import load_workbook
 
 class KeyRatiosDownloader(object):
     u"""Downloads key ratios from http://financials.morningstar.com/
@@ -548,8 +550,21 @@ def _db_execute(query, conn):
 
 fd = FinancialsDownloader()
 df = fd.download('XSES:CH8')
-df2 = np.array(df)
-print(df)
 
-array = np.random.random((36, 36))
-print("end")
+path = r"C:\Users\zhiqi\Desktop"
+os.chdir(path)
+print(os.getcwd())
+list = os.listdir(path)
+number_files = len(list)
+print(number_files)
+
+
+book = load_workbook(r"C:\Users\zhiqi\Desktop\test.xlsx")
+writer = pd.ExcelWriter(r"C:\Users\zhiqi\Desktop\test.xlsx", engine='openpyxl')
+writer.book = book
+writer.sheets = dict((ws.title, ws) for ws in book.worksheets)
+
+pd.Series(df).to_excel(writer, startcol=1, index=False)
+
+writer.save()
+writer.close()

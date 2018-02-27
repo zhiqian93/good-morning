@@ -141,3 +141,4 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 Issues:
     
     FinancialsDownloader returns an array, but not convertable to DataFrame because of tuples
+    IT ACTUALLY RETURNS A DICT
