@@ -545,3 +545,11 @@ def _db_execute(query, conn):
     cursor = conn.cursor()
     cursor.execute(query)
     cursor.close()
+
+fd = FinancialsDownloader()
+df = fd.download('XSES:CH8')
+df2 = np.array(df)
+print(df)
+
+array = np.random.random((36, 36))
+print("end")
