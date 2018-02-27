@@ -551,20 +551,25 @@ def _db_execute(query, conn):
 fd = FinancialsDownloader()
 df = fd.download('XSES:CH8')
 
-path = r"C:\Users\zhiqi\Desktop"
-os.chdir(path)
-print(os.getcwd())
-list = os.listdir(path)
-number_files = len(list)
-print(number_files)
+income = pd.DataFrame(df.get('income_statement'))
+balance = pd.DataFrame(df.get('balance_sheet'))
+cash = pd.DataFrame(df.get('cash_flow'))
+
+# path = r"C:\Users\zhiqi\Desktop"
+# os.chdir(path)
+# print(os.getcwd())
+# list = os.listdir(path)
+# number_files = len(list)
+# print(number_files)
 
 
-book = load_workbook(r"C:\Users\zhiqi\Desktop\test.xlsx")
-writer = pd.ExcelWriter(r"C:\Users\zhiqi\Desktop\test.xlsx", engine='openpyxl')
-writer.book = book
-writer.sheets = dict((ws.title, ws) for ws in book.worksheets)
-
-pd.Series(df).to_excel(writer, startcol=1, index=False)
-
-writer.save()
-writer.close()
+# book = load_workbook(r"C:\Users\zhiqi\Desktop\test.xlsx")
+# writer = pd.ExcelWriter(r"C:\Users\zhiqi\Desktop\test.xlsx", engine='openpyxl')
+# writer.book = book
+# writer.sheets = dict((ws.title, ws) for ws in book.worksheets)
+#
+# pd.D(df).to_excel(writer, startcol=1, index=False)
+#
+# writer.save()
+# writer.close()
+print('end')
